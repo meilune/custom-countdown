@@ -56,7 +56,15 @@ section {
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                text-align: left;
+                input {
+                    margin: 0.5rem;
+                    width: 80%;
+                    height: 34px;
+                    background-color: #EADAD3;
+                    border: solid #EADAD3 1px;
+                    padding: 0.2rem;
+                    color:#402D22;
+                }
             }
 
         }
