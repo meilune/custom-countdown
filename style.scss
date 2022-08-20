@@ -51,6 +51,7 @@ section {
         padding:2rem 4rem;
         margin-bottom: 5rem;
         .input-container {
+            display: none;
             form {
                 position: relative;
                 display: flex;
@@ -95,8 +96,32 @@ section {
                         margin-bottom: 1rem;
                     }
                 }
+            
 
-
+            }
+        }
+        .complete {
+            display: block;
+            .complete-title {
+                animation: complete 4s infinite;
+            }
+            @keyframes complete {
+                0% {
+                    color: rgb(150, 11, 11);
+                }
+                25% {
+                    color: rgb(184, 105, 14);
+                }
+                50% {
+                    color: rgb(97, 76, 1);
+                    transform: scale(1.2);
+                }
+                75% {
+                    color: rgb(141, 5, 75);
+                }
+                100% {
+                    color: rgb(182, 15, 82);
+                }
             }
         }
         button {

@@ -72,6 +72,10 @@ section .container {
   margin-bottom: 5rem;
 }
 
+section .container .input-container {
+  display: none;
+}
+
 section .container .input-container form {
   position: relative;
   display: -webkit-box;
@@ -146,6 +150,55 @@ section .container .countdown ul li {
 section .container .countdown ul li span {
   font-size: 48px;
   margin-bottom: 1rem;
+}
+
+section .container .complete {
+  display: block;
+}
+
+section .container .complete .complete-title {
+  -webkit-animation: complete 4s infinite;
+          animation: complete 4s infinite;
+}
+
+@-webkit-keyframes complete {
+  0% {
+    color: #960b0b;
+  }
+  25% {
+    color: #b8690e;
+  }
+  50% {
+    color: #614c01;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  75% {
+    color: #8d054b;
+  }
+  100% {
+    color: #b60f52;
+  }
+}
+
+@keyframes complete {
+  0% {
+    color: #960b0b;
+  }
+  25% {
+    color: #b8690e;
+  }
+  50% {
+    color: #614c01;
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+  }
+  75% {
+    color: #8d054b;
+  }
+  100% {
+    color: #b60f52;
+  }
 }
 
 section .container button {
