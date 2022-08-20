@@ -51,7 +51,7 @@ section {
         padding:2rem 4rem;
         margin-bottom: 5rem;
         .input-container {
-            display: none;
+            display: block;
             form {
                 position: relative;
                 display: flex;
@@ -101,7 +101,7 @@ section {
             }
         }
         .complete {
-            display: block;
+            display: none;
             .complete-title {
                 animation: complete 4s infinite;
             }
