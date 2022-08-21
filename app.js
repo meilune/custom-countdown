@@ -1,4 +1,4 @@
-const newTitle = document.getElementById("title");
+const newTitle = document.getElementById("countdown-title");
 const newDate = document.getElementById("date-picker");
 const countdownForm = document.getElementById("countdownForm");
 const setDateContainer = document.getElementById("input-container");
@@ -27,6 +27,9 @@ function updateDOM() {
     timeElements[1].textContent = hours;
     timeElements[2].textContent = minutes;
     timeElements[3].textContent = seconds;
+    newTitle.textContent = countdownTitle;
+    setDateContainer.style.display = "none";
+    showCountdownContainer.style.display = "block";
 }
 
 //Take Values from the Input
@@ -39,8 +42,10 @@ function updateCountdown(e) {
     countdownValue = new Date(endDate).getTime();
     console.log(countdownValue); 
     updateDOM();
+
 }
 
 //Event Listeners
 countdownForm.addEventListener('submit', updateCountdown);
+
 
