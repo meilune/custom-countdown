@@ -75,6 +75,7 @@ function updateCountdown(e) {
 //Refresh page when resetting the countdown
 function refreshPage(){
     window.location.reload();
+    localStorage.clear();
 } 
 
 function restorePrevCount() {
