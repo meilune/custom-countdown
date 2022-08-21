@@ -1,6 +1,6 @@
 # custom-countdown
 
-Custom Countdown project.
+Custom Countdown project. Check it out live here: https://meilune.github.io/custom-countdown/
 
 BAckground video by Ivan Samkov: https://www.pexels.com/video/mockup-of-hourglass-and-pomegranate-7704075/
 
