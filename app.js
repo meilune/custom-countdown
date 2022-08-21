@@ -7,11 +7,14 @@ const completeContainer = document.getElementById("complete");
 const countdownBtn = document.getElementById("countdown-button");
 const timeElements = document.querySelectorAll("span");
 const completeBtn = document.getElementById("complete-button");
+const completeInfo = document.getElementById("complete-info");
 
 //Set the global variables
 let countdownTitle = "";
 let endDate = "";
 let countdownValue = Date;
+
+let savedCountdown = {};
 
 //Set the calendar min date so that the earlier date can not be chosen
 let today = new Date().toISOString().split("T")[0];
@@ -35,10 +38,10 @@ function updateDOM() {
     setDateContainer.style.display = "none";
     showCountdownContainer.style.display = "block";
     //Display Complete template if the countdown finished
-    if(distance === 0 || distance < 0) {
+    if(distance <= 0) {
         showCountdownContainer.style.display = "none";
         completeContainer.style.display = "block";
-        timeElements[4].textContent = endDate;
+        completeInfo.textContent = `${countdownTitle} finished on ${endDate}`;
     }
 }
 
@@ -47,13 +50,26 @@ function updateCountdown(e) {
     e.preventDefault();
     countdownTitle = e.srcElement[0].value;
     endDate = e.srcElement[1].value;
-    countdownValue = new Date(endDate).getTime();
 
-    //Setting the interval so that the countdown works:
-    const myInterval = setInterval(updateDOM, 1000);
-    function myStopFunction() {
-    clearInterval(myInterval);
+    //Saving in Local Storage the object of countdown
+    savedCountdown = {
+        title: countdownTitle,
+        date: endDate
     }
+    localStorage.setItem("countdown", JSON.stringify(savedCountdown));
+
+    //Check if the date is selected, else get the number of the date
+    if (endDate === ""){
+        alert("Please select your due date in the calendar.")
+    } else {
+        countdownValue = new Date(endDate).getTime();
+
+        //Setting the interval so that the countdown works:
+        const myInterval = setInterval(updateDOM, 1000);
+        function myStopFunction() {
+        clearInterval(myInterval);
+        }
+    } 
 }
 
 //Refresh page when resetting the countdown
@@ -61,9 +77,26 @@ function refreshPage(){
     window.location.reload();
 } 
 
+function restorePrevCount() {
+    //Get countdown from Local Storage if available
+    if(localStorage.getItem("countdown")) {
+        countdownForm.style.display = "none";
+        savedCountdown = JSON.parse(localStorage.getItem("countdown"));
+        countdownTitle = savedCountdown.title;
+        endDate = savedCountdown.date;
+        showCountdownContainer.style.display = "block";
+        countdownValue = new Date(endDate).getTime();
+        const myInterval = setInterval(updateDOM, 1000);
+        function myStopFunction() {
+        clearInterval(myInterval);
+        } 
+    }
+}
 
 //Event Listeners
 countdownForm.addEventListener('submit', updateCountdown);
 countdownBtn.addEventListener('click', refreshPage);
 completeBtn.addEventListener('click', refreshPage);
 
+//On load check local storage
+restorePrevCount()
